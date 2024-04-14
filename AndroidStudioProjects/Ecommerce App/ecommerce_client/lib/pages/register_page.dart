@@ -1,0 +1,82 @@
+import 'package:ecommerce_client/controller/login_controller.dart';
+import 'package:ecommerce_client/pages/login_page.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+class RegisterPage extends StatelessWidget {
+  const RegisterPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<LoginController>(builder: (ctrl) {
+      return Scaffold(
+        body: Container(
+          padding: EdgeInsets.all(20),
+          width: double.maxFinite,
+          decoration: BoxDecoration(color: Colors.blueGrey[50]),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                'Welcome!',
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.deepPurple,
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              TextField(
+                controller: ctrl.registerName,
+                keyboardType: TextInputType.phone,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  prefixIcon: const Icon(Icons.phone_android),
+                  labelText: 'Name',
+                  hintText: 'Enter your Name',
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              TextField(
+                controller: ctrl.registerPhone,
+                keyboardType: TextInputType.phone,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  prefixIcon: const Icon(Icons.phone_android),
+                  labelText: 'Mobile Number',
+                  hintText: 'Enter your Mobile Number',
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  ctrl.addUser();
+                },
+                style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Colors.deepPurple),
+                child: const Text('Send OTP'),
+              ),
+              TextButton(
+                onPressed: () {
+                  Get.to(() => LoginPage());
+                },
+                child: const Text('Already Signed Up?'),
+              ),
+            ],
+          ),
+        ),
+      );
+    });
+  }
+}
